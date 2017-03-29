@@ -521,8 +521,9 @@ static int ijkmp_stop_l(IjkMediaPlayer *mp)
     if (retval < 0) {
         return retval;
     }
-    //add by xie
-    //ffp_destroy_stream(mp->ffplayer);
+    //add by xie for test
+    ffp_destroy_stream(mp->ffplayer);
+    
     ijkmp_change_state_l(mp, MP_STATE_STOPPED);
     
     return 0;

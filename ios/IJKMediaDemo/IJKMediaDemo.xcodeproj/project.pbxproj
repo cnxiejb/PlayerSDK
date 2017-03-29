@@ -20,6 +20,7 @@
 		55E809F31B146DE8003E98A5 /* IJKQRCodeScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E809F21B146DE8003E98A5 /* IJKQRCodeScanViewController.xib */; };
 		55E809F61B1480BC003E98A5 /* IJKDemoHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E809F51B1480BC003E98A5 /* IJKDemoHistory.m */; };
 		55E809F91B15A1DB003E98A5 /* IJKDemoLocalFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E809F81B15A1DB003E98A5 /* IJKDemoLocalFolderViewController.m */; };
+		5628ACBD1E8B9E9A00BE0A7B /* MintPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5628ACBC1E8B9E9A00BE0A7B /* MintPlayer.m */; };
 		E60E8C2A19EF70BB005B5B6E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60E8C2919EF70BB005B5B6E /* CoreMedia.framework */; };
 		E612EAE517F7E0F800BEE660 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E612EAE417F7E0F800BEE660 /* MediaPlayer.framework */; };
 		E6166C9C17EDA4A20006B956 /* IJKMediaDemo-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = E6166C9B17EDA4A20006B956 /* IJKMediaDemo-Prefix.pch */; };
@@ -100,6 +101,8 @@
 		55E809F51B1480BC003E98A5 /* IJKDemoHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKDemoHistory.m; sourceTree = "<group>"; };
 		55E809F71B15A1DB003E98A5 /* IJKDemoLocalFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKDemoLocalFolderViewController.h; sourceTree = "<group>"; };
 		55E809F81B15A1DB003E98A5 /* IJKDemoLocalFolderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKDemoLocalFolderViewController.m; sourceTree = "<group>"; };
+		5628ACBB1E8B9E9A00BE0A7B /* MintPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MintPlayer.h; sourceTree = "<group>"; };
+		5628ACBC1E8B9E9A00BE0A7B /* MintPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MintPlayer.m; sourceTree = "<group>"; };
 		E60E8C2919EF70BB005B5B6E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		E612EAE417F7E0F800BEE660 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		E6166C9B17EDA4A20006B956 /* IJKMediaDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IJKMediaDemo-Prefix.pch"; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 		E6903F0517EAF70200CFD954 /* IJKMediaDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5628ACBB1E8B9E9A00BE0A7B /* MintPlayer.h */,
+				5628ACBC1E8B9E9A00BE0A7B /* MintPlayer.m */,
 				E6903F0E17EAF70200CFD954 /* IJKAppDelegate.h */,
 				E6903F0F17EAF70200CFD954 /* IJKAppDelegate.m */,
 				E6A9B55C17EDA6AC00A1A500 /* View Controllers */,
@@ -408,6 +413,7 @@
 				55E809F61B1480BC003E98A5 /* IJKDemoHistory.m in Sources */,
 				E6903F0C17EAF70200CFD954 /* main.m in Sources */,
 				55E809E21B143C47003E98A5 /* IJKDemoMainViewController.m in Sources */,
+				5628ACBD1E8B9E9A00BE0A7B /* MintPlayer.m in Sources */,
 				E6903F1017EAF70200CFD954 /* IJKAppDelegate.m in Sources */,
 				E6F524EB1B183A0700B69DC7 /* IJKDemoSampleViewController.m in Sources */,
 				E6A9B56417EDA72C00A1A500 /* IJKMoviePlayerViewController.m in Sources */,
