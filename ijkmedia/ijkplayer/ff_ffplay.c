@@ -3530,12 +3530,8 @@ void ffp_destroy(FFPlayer *ffp)
 {
     if (!ffp)
         return;
-
-    if (ffp->is) {
-        av_log(NULL, AV_LOG_WARNING, "ffp_destroy_ffplayer: force stream_close()");
-        stream_close(ffp);
-        ffp->is = NULL;
-    }
+    
+    ffp_destroy_stream(ffp);
 
     SDL_VoutFreeP(&ffp->vout);
     SDL_AoutFreeP(&ffp->aout);
