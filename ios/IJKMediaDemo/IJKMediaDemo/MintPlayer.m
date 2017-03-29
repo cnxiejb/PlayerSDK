@@ -12,7 +12,6 @@
 @interface MintPlayer()
 @property (strong, nonatomic) IJKFFMoviePlayerController  *player;
 @property (assign, nonatomic) BOOL isPlaying;
-//@property (strong, nonatomic) NSString * stringUrl;
 @end
 
 @implementation MintPlayer
@@ -34,7 +33,6 @@
         self.isPlaying = NO;
         IJKFFOptions *options = [IJKFFOptions optionsByDefault];
         //options.showHudView = NO;
-        //[options setPlayerOptionValue:@"0" forKey:@"videotoolbox"];
         self.player = [[IJKFFMoviePlayerController alloc] initWithOptions:options];
         //self.player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:urlString withOptions:options];
         self.player.scalingMode = IJKMPMovieScalingModeAspectFill;
@@ -53,24 +51,17 @@
     
     //[self.player setGLView:view];
     [view insertSubview:self.player.view atIndex:0];
-    
     [self.player setContentURL:urlString];
-    
     [self installMovieNotificationObservers];
     [self.player prepareToPlay];
     
     NSLog(@"%s \n",__FUNCTION__);
 }
-- (void) play
-{
-    [self.player play];
-    NSLog(@"%s \n",__FUNCTION__);
-}
 - (void) stop
 {
     self.isPlaying = NO;
-    [self removeMovieNotificationObservers];
     
+    [self removeMovieNotificationObservers];
     [self.player.view removeFromSuperview];
     [self.player stop];
     

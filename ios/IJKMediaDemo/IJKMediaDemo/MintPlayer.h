@@ -13,5 +13,4 @@
 
 - (void) playWithContentUrl:(NSString *)urlString withView:(UIView *)view;
 - (void) stop;
-- (void) play;
 @end
