@@ -43,9 +43,6 @@ FFPlayer *ffp_create();
 void      ffp_destroy(FFPlayer *ffp);
 void      ffp_destroy_p(FFPlayer **pffp);
 
-//add by xiejb
-void      ffp_destroy_stream(FFPlayer *ffp);
-
 void      ffp_reset(FFPlayer *ffp);
 
 /* set options before ffp_prepare_async_l() */

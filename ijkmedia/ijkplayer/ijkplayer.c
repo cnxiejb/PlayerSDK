@@ -341,7 +341,10 @@ static int ijkmp_set_data_source_l(IjkMediaPlayer *mp, const char *url)
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_STARTED);
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_PAUSED);
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_COMPLETED);
-    MPST_RET_IF_EQ(mp->mp_state, MP_STATE_STOPPED);
+    
+    //modify by xie,user can change url when player is in stopped state.
+   // MPST_RET_IF_EQ(mp->mp_state, MP_STATE_STOPPED);
+    
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_ERROR);
     MPST_RET_IF_EQ(mp->mp_state, MP_STATE_END);
 
@@ -517,12 +520,11 @@ static int ijkmp_stop_l(IjkMediaPlayer *mp)
 
     ffp_remove_msg(mp->ffplayer, FFP_REQ_START);
     ffp_remove_msg(mp->ffplayer, FFP_REQ_PAUSE);
+    
     int retval = ffp_stop_l(mp->ffplayer);
     if (retval < 0) {
         return retval;
     }
-    //add by xie for test
-    ffp_destroy_stream(mp->ffplayer);
     
     ijkmp_change_state_l(mp, MP_STATE_STOPPED);
     

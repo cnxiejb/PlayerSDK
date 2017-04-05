@@ -3518,20 +3518,17 @@ FFPlayer *ffp_create()
     return ffp;
 }
 
-void ffp_destroy_stream(FFPlayer *ffp)
-{
-    if (ffp->is) {
-        av_log(NULL, AV_LOG_WARNING, "ffp_destroy_stream: force stream_close()");
-        stream_close(ffp);
-        ffp->is = NULL;
-    }
-}
+
 void ffp_destroy(FFPlayer *ffp)
 {
     if (!ffp)
         return;
     
-    ffp_destroy_stream(ffp);
+    if (ffp->is) {
+        av_log(NULL, AV_LOG_WARNING, "ffp_destroy_stream: force stream_close()");
+        stream_close(ffp);
+        ffp->is = NULL;
+    }
 
     SDL_VoutFreeP(&ffp->vout);
     SDL_AoutFreeP(&ffp->aout);
@@ -3557,7 +3554,6 @@ void ffp_destroy_p(FFPlayer **pffp)
     ffp_destroy(*pffp);
     *pffp = NULL;
 }
-
 static AVDictionary **ffp_get_opt_dict(FFPlayer *ffp, int opt_category)
 {
     assert(ffp);

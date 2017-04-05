@@ -343,6 +343,9 @@ void IJKFFIOStatCompleteRegister(void (*cb)(const char *url,
 
     [self stopHudTimer];
     ijkmp_stop(_mediaPlayer);
+    
+    //add by xiejb,when stop,means close the stream,do not release resource
+    ijkmp_shutdown(_mediaPlayer);
 }
 
 - (BOOL)isPlaying
