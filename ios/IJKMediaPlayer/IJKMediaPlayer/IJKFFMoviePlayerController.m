@@ -180,7 +180,7 @@ void IJKFFIOStatCompleteRegister(void (*cb)(const char *url,
         IJKWeakHolder *weakHolder = [IJKWeakHolder new];
         weakHolder.object = self;
         
-        ijkmp_set_weak_thiz(_mediaPlayer, (__bridge_retained void *) self);
+        //ijkmp_set_weak_thiz(_mediaPlayer, (__bridge_retained void *) self);
         ijkmp_set_inject_opaque(_mediaPlayer, (__bridge_retained void *) weakHolder);
         ijkmp_set_ijkio_inject_opaque(_mediaPlayer, (__bridge_retained void *)weakHolder);
         ijkmp_set_option_int(_mediaPlayer, IJKMP_OPT_CATEGORY_PLAYER, "start-on-prepared", _shouldAutoplay ? 1 : 0);
@@ -295,7 +295,9 @@ void IJKFFIOStatCompleteRegister(void (*cb)(const char *url,
 
     ijkmp_set_data_source(_mediaPlayer, [_urlString UTF8String]);
     ijkmp_set_option(_mediaPlayer, IJKMP_OPT_CATEGORY_FORMAT, "safe", "0"); // for concat demuxer
-
+    //set make sure msg_loop not exit
+    ijkmp_set_weak_thiz(_mediaPlayer, (__bridge_retained void *) self);//add by xie
+    
     _monitor.prepareStartTick = (int64_t)SDL_GetTickHR();
     ijkmp_prepare_async(_mediaPlayer);
 }
@@ -504,6 +506,7 @@ inline static int getPlayerOption(IJKFFOptionCategory category)
     __unused id weakijkHolder = (__bridge_transfer IJKWeakHolder*)ijkmp_set_ijkio_inject_opaque(_mediaPlayer, NULL);
     ijkmp_dec_ref_p(&_mediaPlayer);
 
+    NSLog(@"%s\n",__FUNCTION__);
     [self didShutdown];
 }
 
