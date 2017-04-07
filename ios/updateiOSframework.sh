@@ -8,6 +8,9 @@ project="IJKMediaPlayer.xcodeproj"
 
 cd ~/Documents/ios_mint/MintLive/MintLivePlayer/
 rm -rf IJKMediaFramework.framework
+cd MintLivePlayer/MintTools
+rm -rf MintPlayer.h
+rm -rf MintPlayer.m
 
 cd ~/Documents/github/ijkplayer/ios/IJKMediaPlayer
 xcodebuild -project $project -scheme "IJKMediaFramework" -configuration Release -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2' clean
@@ -22,4 +25,7 @@ cd Release-iphoneos/IJKMediaFramework.framework/
 rm -rf IJKMediaFramework
 mv ../../IJKMediaFramework .
 mv ../IJKMediaFramework.framework ~/Documents/ios_mint/MintLive/MintLivePlayer/
+
+cd ~/Documents/mintPlayerSDk/ios/IJKMediaDemo/IJKMediaDemo/
+cp MintPlayer.* ~/Documents/ios_mint/MintLive/MintLivePlayer/MintLivePlayer/MintTools/
 
