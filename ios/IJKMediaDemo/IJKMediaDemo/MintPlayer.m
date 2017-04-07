@@ -32,13 +32,13 @@
     {
         self.isPlaying = NO;
         IJKFFOptions *options = [IJKFFOptions optionsByDefault];
-        //options.showHudView = NO;
+        options.showHudView = NO;
         self.player = [[IJKFFMoviePlayerController alloc] initWithOptions:options];
         //self.player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:urlString withOptions:options];
         self.player.scalingMode = IJKMPMovieScalingModeAspectFill;
         self.player.shouldAutoplay = YES;
     }
-    NSLog(@"%s \n",__FUNCTION__);
+    NSLog(@"ijk %s \n",__FUNCTION__);
     return self;
 }
 
@@ -51,11 +51,14 @@
     
     //[self.player setGLView:view];
     [view insertSubview:self.player.view atIndex:0];
+    /*[self.player.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(@0);
+    }];*/
     [self.player setContentURL:urlString];
     [self installMovieNotificationObservers];
     [self.player prepareToPlay];
     
-    NSLog(@"%s \n",__FUNCTION__);
+    NSLog(@"ijk %s \n",__FUNCTION__);
 }
 - (void) stop
 {
@@ -65,7 +68,7 @@
     [self.player.view removeFromSuperview];
     [self.player stop];
     
-    NSLog(@"%s \n",__FUNCTION__);
+    NSLog(@"ijk %s \n",__FUNCTION__);
 }
 
 - (void)loadStateDidChange:(NSNotification*)notification
@@ -183,6 +186,7 @@
                                              selector:@selector(moviePlayBackStateDidChange:)
                                                  name:IJKMPMoviePlayerPlaybackStateDidChangeNotification
                                                object:_player];
+    NSLog(@"ijk %s \n",__FUNCTION__);
 }
 
 #pragma mark Remove Movie Notification Handlers
@@ -194,6 +198,7 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerPlaybackDidFinishNotification object:_player];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMediaPlaybackIsPreparedToPlayDidChangeNotification object:_player];
     [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerPlaybackStateDidChangeNotification object:_player];
+    NSLog(@"ijk %s \n",__FUNCTION__);
 }
 
 @end
