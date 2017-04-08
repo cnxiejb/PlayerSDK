@@ -1,4 +1,6 @@
 #!/bin/bash
+rm -rf ijklibs
+mkdir ijklibs
 
 mv ./ijkplayer/ijkplayer-x86/src/main/libs/x86 ./ijklibs/
 mv ./ijkplayer/ijkplayer-x86_64/src/main/libs/x86_64 ./ijklibs/
