@@ -42,3 +42,5 @@ xcshareddata
 *.xccheckout
 
 /ios/Packing
+/android/ijklibs.zip
+/android/ijklibs
