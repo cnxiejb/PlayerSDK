@@ -2487,17 +2487,19 @@ out:
 
 static int decode_interrupt_cb(void *ctx)
 {
-    VideoState *is = ctx;
+    FFPlayer *ffp = ctx;
+    VideoState *is = ffp->is;
     //add by xie
 #ifdef START_READ_FRAME_TIME
     if(is->start_read_frame_time > 0){
         double read_time_duration = (av_gettime_relative() / 1000.0) - is->start_read_frame_time;
-        if(read_time_duration > MIN_CACHED_DURATION && is->start_read_frame_time != is->last_start_read_frame_time){//卡顿
+        if(read_time_duration > 5000 && is->start_read_frame_time != is->last_start_read_frame_time){//卡顿
             
-            is->pkt_cached_duration = FFMIN(is->pkt_cached_duration + MIN_CACHED_DURATION,MAX_CACHED_DURATION);//加大缓冲队列
+            is->pkt_cached_duration = FFMIN(is->pkt_cached_duration + MIN_CACHED_DURATION*3,MAX_CACHED_DURATION);//加大缓冲队列
             is->cut_cached_duration_base += 2*REDUCE_CACHED_DURATION_INTERVAL;//延时减小队列
             
-            av_log(NULL,AV_LOG_WARNING,"decode_interrupt start_read_frame_time = %lld read_time_duration = %f pkt_cached_duration = %d \n",is->start_read_frame_time,read_time_duration,is->pkt_cached_duration);
+            ffp_notify_msg2(ffp, FFP_MSG_ERROR,101);
+            //av_log(NULL,AV_LOG_WARNING,"decode_interrupt start_read_frame_time = %lld read_time_duration = %f pkt_cached_duration = %d \n",is->start_read_frame_time,read_time_duration,is->pkt_cached_duration);
             is->last_start_read_frame_time = is->start_read_frame_time;//更新上次时间
         }
     }
@@ -2688,7 +2690,7 @@ static int read_thread(void *arg)
         goto fail;
     }
     ic->interrupt_callback.callback = decode_interrupt_cb;
-    ic->interrupt_callback.opaque = is;
+    ic->interrupt_callback.opaque = ffp;
     if (!av_dict_get(ffp->format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE)) {
         av_dict_set(&ffp->format_opts, "scan_all_pmts", "1", AV_DICT_DONT_OVERWRITE);
         scan_all_pmts_set = 1;
