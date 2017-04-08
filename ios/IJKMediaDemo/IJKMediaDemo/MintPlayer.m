@@ -109,6 +109,7 @@
     {
         case IJKMPMovieFinishReasonPlaybackEnded:
             NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", reason);
+            [self reConnectServer];
             break;
             
         case IJKMPMovieFinishReasonUserExited:
@@ -147,12 +148,10 @@
     {
         case IJKMPMoviePlaybackStateStopped: {
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)_player.playbackState);
-            [self stop];
             break;
         }
         case IJKMPMoviePlaybackStatePlaying: {
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: playing", (int)_player.playbackState);
-            self.isPlaying = YES;
             break;
         }
         case IJKMPMoviePlaybackStatePaused: {
