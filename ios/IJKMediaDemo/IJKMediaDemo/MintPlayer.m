@@ -70,7 +70,16 @@
     
     NSLog(@"ijk %s \n",__FUNCTION__);
 }
-
+- (void) reConnectServer
+{
+    if(!self.isPlaying)
+        return;
+    
+    [self.player stop];
+    [self.player prepareToPlay];
+    
+    NSLog(@"ijk %s \n",__FUNCTION__);
+}
 - (void)loadStateDidChange:(NSNotification*)notification
 {
     //    MPMovieLoadStateUnknown        = 0,
@@ -95,7 +104,7 @@
     //    MPMovieFinishReasonPlaybackError,
     //    MPMovieFinishReasonUserExited
     int reason = [[[notification userInfo] valueForKey:IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
-    
+    int error;
     switch (reason)
     {
         case IJKMPMovieFinishReasonPlaybackEnded:
@@ -107,9 +116,13 @@
             break;
             
         case IJKMPMovieFinishReasonPlaybackError:
-            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", reason);
+            error = [[[notification userInfo] valueForKey:@"error"] intValue];
+            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", error);
+            if(error == 101)
+                ;//卡顿
+            else
+                [self reConnectServer];
             break;
-            
         default:
             NSLog(@"playbackPlayBackDidFinish: ???: %d\n", reason);
             break;
@@ -134,7 +147,7 @@
     {
         case IJKMPMoviePlaybackStateStopped: {
             NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)_player.playbackState);
-            self.isPlaying = NO;
+            [self stop];
             break;
         }
         case IJKMPMoviePlaybackStatePlaying: {
