@@ -34,7 +34,6 @@
         IJKFFOptions *options = [IJKFFOptions optionsByDefault];
         options.showHudView = NO;
         self.player = [[IJKFFMoviePlayerController alloc] initWithOptions:options];
-        //self.player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:urlString withOptions:options];
         self.player.scalingMode = IJKMPMovieScalingModeAspectFill;
         self.player.shouldAutoplay = YES;
     }
