@@ -3867,6 +3867,8 @@ int ffp_wait_stop_l(FFPlayer *ffp)
         stream_close(ffp);
         ffp->is = NULL;
     }
+    //add by xiejb
+    ffpipenode_free_p(&ffp->node_vdec);
     return 0;
 }
 
