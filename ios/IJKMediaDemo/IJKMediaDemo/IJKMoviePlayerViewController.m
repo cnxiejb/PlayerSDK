@@ -62,7 +62,7 @@
 
 //    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 //    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:NO];
-/*
+
 #ifdef DEBUG
     [IJKFFMoviePlayerController setLogReport:YES];
     [IJKFFMoviePlayerController setLogLevel:k_IJK_LOG_DEBUG];
@@ -84,9 +84,9 @@
 
     self.view.autoresizesSubviews = YES;
     [self.view addSubview:self.player.view];
- */
-    NSString *aUrlString = [self.url isFileURL] ? [self.url path] : [self.url absoluteString];
-    [[MintPlayer sharedMintPlayer] playWithContentUrl:aUrlString withView:self.view];
+    
+    /*NSString *aUrlString = [self.url isFileURL] ? [self.url path] : [self.url absoluteString];
+    [[MintPlayer sharedMintPlayer] playWithContentUrl:aUrlString withView:self.view];*/
     [self.view addSubview:self.mediaControl];
 
     self.mediaControl.delegatePlayer = self.player;
@@ -95,17 +95,17 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-   // [self installMovieNotificationObservers];
+    [self installMovieNotificationObservers];
     //NSLog(@"MintPlayer prepareToPlay");
-    //[self.player prepareToPlay];
+    [self.player prepareToPlay];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-   // [self.player shutdown];
-   // [self removeMovieNotificationObservers];
-    [[MintPlayer sharedMintPlayer] stop];
+    [self.player shutdown];
+    [self removeMovieNotificationObservers];
+    //[[MintPlayer sharedMintPlayer] stop];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
