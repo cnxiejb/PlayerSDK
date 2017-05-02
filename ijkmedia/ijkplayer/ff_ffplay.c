@@ -4097,6 +4097,7 @@ void ffp_statistic_l(FFPlayer *ffp)
     ffp_video_statistic_l(ffp);
 }
 
+//检查是否开始缓冲
 void ffp_check_buffering_l(FFPlayer *ffp)
 {
     VideoState *is            = ffp->is;
